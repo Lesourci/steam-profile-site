@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil Steam</title>
+    <title>Mon Profil Gaming</title>
     <style>
         /* Style général */
         body {
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             text-align: center;
@@ -25,108 +25,153 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
+            margin: 1rem;
         }
 
-        /* Titre */
-        h1, h2 {
+        /* Section infos personnelles */
+        .profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-info img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border: 4px solid #ff6f61;
+            margin-right: 1rem;
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+            margin: 0;
             color: #ff6f61;
         }
 
-        /* Avatar */
-        img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            border: 4px solid #ff6f61;
+        .profile-info p {
+            margin: 0;
+            color: #888;
+        }
+
+        /* Section stats de jeux */
+        .game-stats {
+            margin-bottom: 2rem;
+        }
+
+        .game-stats h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
             margin-bottom: 1rem;
         }
 
-        /* Liens */
-        a {
-            color: #ff6f61;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Liste des stats */
-        ul {
+        .game-stats ul {
             list-style-type: none;
             padding: 0;
         }
 
-        ul li {
+        .game-stats ul li {
+            background-color: #333;
             margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        .stat-kills { color: #4caf50; }
+        .stat-deaths { color: #f44336; }
+        .stat-time { color: #2196f3; }
+
+        /* Section rangs et jeux */
+        .ranks-games {
+            margin-bottom: 2rem;
+        }
+
+        .ranks-games h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 1rem;
+        }
+
+        .ranks-games ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .ranks-games ul li {
+            background-color: #333;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        /* Section captures d'écran */
+        .screenshots {
+            margin-bottom: 2rem;
+        }
+
+        .screenshots h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 1rem;
+        }
+
+        .screenshots .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .screenshots img {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid #444;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Mon Profil Steam</h1>
-        <div id="steam-data" data-loading="true">
-            <!-- Les infos Steam seront injectées ici -->
+        <!-- Section infos personnelles -->
+        <div class="profile-info">
+            <img src="https://via.placeholder.com/100" alt="Avatar">
+            <div>
+                <h1>MonPseudo</h1>
+                <p>Joueur passionné de FPS et de stratégie</p>
+            </div>
         </div>
 
-        <div id="game-stats">
-            <h2>Statistiques de CS:GO</h2>
-            <ul id="csgo-stats"></ul>
+        <!-- Section stats de jeux -->
+        <div class="game-stats">
+            <h2>Mes Stats CS:GO</h2>
+            <ul id="csgo-stats">
+                <li class="stat-kills">Kills totaux : 1500</li>
+                <li class="stat-deaths">Morts totales : 1200</li>
+                <li class="stat-time">Temps de jeu : 500 heures</li>
+            </ul>
+        </div>
+
+        <!-- Section rangs et jeux -->
+        <div class="ranks-games">
+            <h2>Mes Rangs et Jeux</h2>
+            <ul>
+                <li>Rang CS:GO : Légendaire Aigle de Maître</li>
+                <li>Jeux préférés : CS:GO, Dota 2, Valorant</li>
+            </ul>
+        </div>
+
+        <!-- Section captures d'écran -->
+        <div class="screenshots">
+            <h2>Captures d'écran</h2>
+            <div class="screenshot-grid">
+                <img src="https://via.placeholder.com/200" alt="Capture 1">
+                <img src="https://via.placeholder.com/200" alt="Capture 2">
+                <img src="https://via.placeholder.com/200" alt="Capture 3">
+            </div>
         </div>
     </div>
-
-    <script>
-        const steamID = "76561198157523528";  // Remplace avec ton Steam ID64
-        const apiKey = "D03665CCB8A09718256ADC3DF2FAC559";  // Remplace avec ta clé API Steam
-        const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${apiKey}&steamids=${steamID}`;
-        const csgoUrl = `https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?key=${apiKey}&steamid=${steamID}&appid=730`;
-
-        // Récupérer les infos du profil Steam
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const player = data.response.players[0];
-                document.getElementById("steam-data").innerHTML = `
-                    <img src="${player.avatarfull}" alt="Avatar">
-                    <p>Nom : ${player.personaname}</p>
-                    <p>Profil : <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
-                `;
-                document.getElementById("steam-data").removeAttribute("data-loading");
-            })
-            .catch(error => console.error("Erreur lors de la récupération des données Steam :", error));
-
-        // Récupérer les stats de CS:GO
-        fetch(csgoUrl)
-            .then(response => response.json())
-            .then(data => {
-                const stats = data.playerstats.stats;
-                let statsHTML = "";
-
-                // Exemple de stats à afficher
-                const importantStats = {
-                    "total_kills": "Kills totaux",
-                    "total_deaths": "Morts totales",
-                    "total_time_played": "Temps de jeu",
-                    "total_wins": "Victoires totales",
-                    "total_mvps": "MVPs totaux"
-                };
-
-                stats.forEach(stat => {
-                    if (importantStats[stat.name]) {
-                        let value = stat.value;
-                        // Convertir le temps de jeu en heures
-                        if (stat.name === "total_time_played") {
-                            value = Math.round(value / 3600) + " heures";
-                        }
-                        statsHTML += `<li>${importantStats[stat.name]} : ${value}</li>`;
-                    }
-                });
-
-                document.getElementById("csgo-stats").innerHTML = statsHTML;
-            })
-            .catch(error => console.error("Erreur lors de la récupération des stats CS:GO :", error));
-    </script>
 </body>
 </html>
