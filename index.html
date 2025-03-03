@@ -53,29 +53,14 @@
             text-decoration: underline;
         }
 
-        /* Formulaire */
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* Liste des stats */
+        ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        input, textarea, button {
-            padding: 0.5rem;
-            border-radius: 5px;
-            border: 1px solid #444;
-            background-color: #333;
-            color: #fff;
-        }
-
-        button {
-            background-color: #ff6f61;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #e65a50;
+        ul li {
+            margin: 0.5rem 0;
         }
     </style>
 </head>
@@ -90,37 +75,11 @@
             <h2>Statistiques de CS:GO</h2>
             <ul id="csgo-stats"></ul>
         </div>
-
-        <div id="custom-info">
-            <h2>À propos de moi</h2>
-            <p>Je suis un passionné de jeux vidéo, surtout de FPS et de jeux de stratégie.</p>
-            <p>Retrouvez-moi sur :</p>
-            <ul>
-                <li><a href="https://twitch.tv/moncompte" target="_blank">Twitch</a></li>
-                <li><a href="https://twitter.com/moncompte" target="_blank">Twitter</a></li>
-            </ul>
-        </div>
-
-        <div id="contact-form">
-            <h2>Contactez-moi</h2>
-            <form>
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message :</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">Envoyer</button>
-            </form>
-        </div>
     </div>
 
     <script>
-        const steamID = "76561198157523528";  // Ton Steam ID64
-        const apiKey = "D03665CCB8A09718256ADC3DF2FAC559";  // Ta clé API Steam
+        const steamID = "76561198157523528";  // Remplace avec ton Steam ID64
+        const apiKey = "D03665CCB8A09718256ADC3DF2FAC559";  // Remplace avec ta clé API Steam
         const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${apiKey}&steamids=${steamID}`;
         const csgoUrl = `https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?key=${apiKey}&steamid=${steamID}&appid=730`;
 
@@ -144,9 +103,27 @@
             .then(data => {
                 const stats = data.playerstats.stats;
                 let statsHTML = "";
+
+                // Exemple de stats à afficher
+                const importantStats = {
+                    "total_kills": "Kills totaux",
+                    "total_deaths": "Morts totales",
+                    "total_time_played": "Temps de jeu",
+                    "total_wins": "Victoires totales",
+                    "total_mvps": "MVPs totaux"
+                };
+
                 stats.forEach(stat => {
-                    statsHTML += `<li>${stat.name} : ${stat.value}</li>`;
+                    if (importantStats[stat.name]) {
+                        let value = stat.value;
+                        // Convertir le temps de jeu en heures
+                        if (stat.name === "total_time_played") {
+                            value = Math.round(value / 3600) + " heures";
+                        }
+                        statsHTML += `<li>${importantStats[stat.name]} : ${value}</li>`;
+                    }
                 });
+
                 document.getElementById("csgo-stats").innerHTML = statsHTML;
             })
             .catch(error => console.error("Erreur lors de la récupération des stats CS:GO :", error));
