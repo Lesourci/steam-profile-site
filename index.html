@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil Steam</title>
+</head>
+<body>
+    <h1>Mes Infos Steam</h1>
+    <div id="steam-data">Chargement...</div>
+
+    <script>
+        const steamID = "TON_STEAM_ID";  // Remplace avec ton Steam ID64
+        const apiKey = "TA_CLEF_API_STEAM";  // Remplace avec ta clé API Steam
+        const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${apiKey}&steamids=${steamID}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const player = data.response.players[0];
+                document.getElementById("steam-data").innerHTML = `
+                    <img src="${player.avatarfull}" alt="Avatar">
+                    <p>Nom : ${player.personaname}</p>
+                    <p>Profil : <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
+                `;
+            })
+            .catch(error => console.error("Erreur lors de la récupération des données Steam :", error));
+    </script>
+</body>
+</html>
