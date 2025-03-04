@@ -126,10 +126,12 @@
             gap: 1rem;
         }
 
-        .screenshots img {
-            width: 200px;  /* Largeur fixe */
-            height: 150px; /* Hauteur fixe */
-            object-fit: cover; /* Recadre l’image pour qu’elle remplisse la zone */
+        /* Image spécifique pour les captures d'écran */
+        .screenshot-grid img {
+            width: 100%;  /* Ajuste la largeur */
+            height: auto; /* Hauteur automatique pour garder le ratio */
+            max-height: 300px; /* Limite la hauteur à 300px */
+            object-fit: cover; /* Recadre l'image */
             border-radius: 10px;
             border: 2px solid #444;
         }
