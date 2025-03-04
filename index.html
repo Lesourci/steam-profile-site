@@ -5,229 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Ajout de Google Fonts Poppins -->
-   <style>
-    /* Style général */
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #121212; /* Fond sombre pour améliorer la lisibilité */
-        background-image: url('https://github.com/Lesourci/steam-profile-site/blob/main/images/image-de-fond.jpg?raw=true'); /* Image de fond */
-        background-size: cover;
-        background-position: center center;
-        color: #ffffff;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        text-align: center;
-        overflow-x: hidden;
-        transition: background-color 0.5s ease;
-    }
-
-    /* Conteneur principal */
-    .container {
-        background-color: rgba(31, 31, 31, 0.8); /* Fond légèrement transparent pour mieux voir l'image derrière */
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        max-width: 850px;
-        width: 100%;
-        margin: 2rem;
-        transition: transform 0.3s ease;
-    }
-
-    .container:hover {
-        transform: scale(1.02); /* Effet d'agrandissement doux au survol */
-    }
-
-    /* Section infos personnelles */
-    .profile-info {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 2rem;
-        animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
+    <style>
+        /* Style général */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; /* Fond sombre pour améliorer la lisibilité */
+            background-image: url('https://github.com/Lesourci/steam-profile-site/blob/main/images/image-de-fond.jpg?raw=true'); /* Image de fond */
+            background-size: cover;
+            background-position: center center;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
         }
-        to {
-            opacity: 1;
+
+        /* Conteneur principal */
+        .container {
+            background-color: rgba(31, 31, 31, 0.8); /* Fond légèrement transparent pour mieux voir l'image derrière */
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 850px;
+            width: 100%;
+            margin: 2rem;
         }
-    }
 
-    .profile-info img {
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        border: 4px solid #ff6f61;
-        margin-right: 1rem;
-        transition: transform 0.3s ease;
-    }
+        /* Section infos personnelles */
+        .profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
 
-    .profile-info img:hover {
-        transform: scale(1.1); /* Effet de zoom sur l'avatar au survol */
-    }
+        .profile-info img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border: 4px solid #ff6f61;
+            margin-right: 1rem;
+        }
 
-    .profile-info h1 {
-        font-size: 2.2rem;
-        margin: 0;
-        color: #ff6f61;
-    }
+        .profile-info h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: #ff6f61;
+        }
 
-    .profile-info p {
-        margin: 0;
-        color: #aaa;
-        font-size: 1rem;
-    }
+        .profile-info p {
+            margin: 0;
+            color: #aaa;
+            font-size: 1rem;
+        }
 
-    /* Section stats de jeux */
-    .game-stats {
-        margin-bottom: 2rem;
-    }
+        /* Section stats de jeux */
+        .game-stats {
+            margin-bottom: 2rem;
+        }
 
-    .game-stats h2 {
-        font-size: 1.5rem;
-        color: #ff6f61;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
+        .game-stats h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
 
-    .game-stats ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        .game-stats ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .game-stats ul li {
-        background-color: #333;
-        margin: 0.8rem 0;
-        padding: 1.2rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        transition: background-color 0.3s ease;
-    }
+        .game-stats ul li {
+            background-color: #333;
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
 
-    .game-stats ul li:hover {
-        background-color: #444; /* Changer légèrement le fond au survol */
-    }
+        /* Section rangs et jeux */
+        .ranks-games {
+            margin-bottom: 2rem;
+        }
 
-    /* Section rangs et jeux */
-    .ranks-games {
-        margin-bottom: 2rem;
-    }
+        .ranks-games h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
 
-    .ranks-games h2 {
-        font-size: 1.5rem;
-        color: #ff6f61;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
+        .ranks-games ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .ranks-games ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        .ranks-games ul li {
+            background-color: #333;
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: #00FF00; /* Texte en vert pour la section rangs et jeux */
+        }
 
-    .ranks-games ul li {
-        background-color: #333;
-        margin: 0.8rem 0;
-        padding: 1.2rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        transition: background-color 0.3s ease;
-    }
+        /* Section captures d'écran */
+        .screenshots {
+            margin-bottom: 2rem;
+        }
 
-    .ranks-games ul li:hover {
-        background-color: #444; /* Changer légèrement le fond au survol */
-    }
+        .screenshots h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
 
-    /* Section captures d'écran */
-    .screenshots {
-        margin-bottom: 2rem;
-    }
+        .screenshots .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
 
-    .screenshots h2 {
-        font-size: 1.5rem;
-        color: #ff6f61;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
+        /* Capture 2 réduite */
+        .screenshots img.capture-2 {
+            width: 300px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Ombre douce pour l'image */
+        }
 
-    .screenshots .screenshot-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.2rem;
-    }
+        /* Capture 3 agrandie */
+        .screenshots img.capture-3 {
+            width: 120%;  /* Augmenter la largeur de Capture 3 de 5% */
+            height: auto; /* Hauteur automatique pour garder les proportions */
+            max-height: 550px;  /* Limiter la hauteur si nécessaire */
+            object-fit: cover;  /* Recadrer l'image si nécessaire */
+            transform: translateX(-20%);  /* Centrer l'image à gauche */
+        }
 
-    .screenshots img.capture-2 {
-        width: 300px;
-        height: 350px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Ombre douce pour l'image */
-        transition: transform 0.3s ease;
-    }
+        /* Section Liens utiles */
+        .useful-links {
+            margin-bottom: 2rem;
+        }
 
-    .screenshots img.capture-2:hover {
-        transform: scale(1.05); /* Effet de zoom léger au survol */
-    }
+        .useful-links h2 {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
 
-    .screenshots img.capture-3 {
-        width: 120%;
-        height: auto;
-        max-height: 550px;
-        object-fit: cover;
-        transform: translateX(-20%);
-        transition: transform 0.3s ease;
-    }
+        .useful-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .screenshots img.capture-3:hover {
-        transform: scale(1.05) translateX(-20%); /* Effet de zoom pour Capture 3 */
-    }
+        .useful-links ul li {
+            background-color: #333;
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
 
-    /* Section Liens utiles */
-    .useful-links {
-        margin-bottom: 2rem;
-    }
+        .useful-links ul li a {
+            color: #2196f3;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-    .useful-links h2 {
-        font-size: 1.5rem;
-        color: #ff6f61;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
-
-    .useful-links ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .useful-links ul li {
-        background-color: #333;
-        margin: 0.8rem 0;
-        padding: 1.2rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        transition: background-color 0.3s ease;
-    }
-
-    .useful-links ul li:hover {
-        background-color: #444; /* Changer légèrement le fond au survol */
-    }
-
-    .useful-links ul li a {
-        color: #2196f3;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .useful-links ul li a:hover {
-        text-decoration: underline;
-    }
-</style>
+        .useful-links ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -271,4 +228,3 @@
     </div>
 </body>
 </html>
-
