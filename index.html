@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Ajout de Google Fonts Poppins -->
     <style>
         /* Style général */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a1a1a;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; /* Fond sombre pour améliorer la lisibilité */
             color: #ffffff;
             margin: 0;
             padding: 0;
@@ -17,17 +18,23 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            overflow-x: hidden;
         }
 
         /* Conteneur principal */
         .container {
-            background-color: #2a2a2a;
+            background-color: #1f1f1f; /* Fond légèrement plus clair pour délimiter le contenu */
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
+            border-radius: 15px; /* Bordure plus arrondie */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 850px;
             width: 100%;
-            margin: 1rem;
+            margin: 2rem;
+            transition: transform 0.3s ease; /* Transition fluide */
+        }
+
+        .container:hover {
+            transform: scale(1.02); /* Effet de zoom au survol */
         }
 
         /* Section infos personnelles */
@@ -40,21 +47,27 @@
 
         .profile-info img {
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border: 4px solid #ff6f61;
             margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-info img:hover {
+            transform: scale(1.1); /* Légère augmentation de taille au survol */
         }
 
         .profile-info h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 0;
             color: #ff6f61;
         }
 
         .profile-info p {
             margin: 0;
-            color: #888;
+            color: #aaa;
+            font-size: 1rem;
         }
 
         /* Section stats de jeux */
@@ -66,6 +79,7 @@
             font-size: 1.5rem;
             color: #ff6f61;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .game-stats ul {
@@ -75,15 +89,16 @@
 
         .game-stats ul li {
             background-color: #333;
-            margin: 0.5rem 0;
-            padding: 1rem;
-            border-radius: 5px;
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 10px;
             font-size: 1.1rem;
+            transition: background-color 0.3s ease;
         }
 
-        .stat-kills { color: #4caf50; }
-        .stat-deaths { color: #f44336; }
-        .stat-time { color: #2196f3; }
+        .game-stats ul li:hover {
+            background-color: #444; /* Changement de fond au survol */
+        }
 
         /* Section rangs et jeux */
         .ranks-games {
@@ -94,6 +109,7 @@
             font-size: 1.5rem;
             color: #ff6f61;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .ranks-games ul {
@@ -103,10 +119,15 @@
 
         .ranks-games ul li {
             background-color: #333;
-            margin: 0.5rem 0;
-            padding: 1rem;
-            border-radius: 5px;
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 10px;
             font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .ranks-games ul li:hover {
+            background-color: #444;
         }
 
         /* Section captures d'écran */
@@ -118,28 +139,42 @@
             font-size: 1.5rem;
             color: #ff6f61;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .screenshots .screenshot-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
         }
 
-        /* Réduire Capture 2 (image de gauche) */
+        /* Capture 2 réduite */
         .screenshots img.capture-2 {
-            width: 300px;  /* Réduire la largeur de Capture 2 */
-            height: 400px; /* Réduire la hauteur de Capture 2 */
-            object-fit: cover;  /* Recadrer l'image si nécessaire */
+            width: 280px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Ombre douce pour l'image */
+            transition: transform 0.3s ease;
         }
 
-        /* Agrandir Capture 3 (image de droite) */
+        .screenshots img.capture-2:hover {
+            transform: scale(1.05); /* Légère augmentation au survol */
+        }
+
+        /* Capture 3 agrandie */
         .screenshots img.capture-3 {
-            width: 120%;  /* Augmenter la largeur de Capture 3 à 120% */
-            height: auto; /* Hauteur automatique pour garder les proportions */
-            max-height: 600px;  /* Limiter la hauteur si nécessaire */
-            object-fit: cover;  /* Recadrer l'image si nécessaire */
-            transform: translateX(-20%);  /* Déplacer l'image vers la gauche */
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .screenshots img.capture-3:hover {
+            transform: scale(1.05);
         }
 
         /* Section Liens utiles */
@@ -151,6 +186,7 @@
             font-size: 1.5rem;
             color: #ff6f61;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .useful-links ul {
@@ -160,15 +196,21 @@
 
         .useful-links ul li {
             background-color: #333;
-            margin: 0.5rem 0;
-            padding: 1rem;
-            border-radius: 5px;
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 10px;
             font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .useful-links ul li:hover {
+            background-color: #444;
         }
 
         .useful-links ul li a {
             color: #2196f3;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .useful-links ul li a:hover {
@@ -189,10 +231,10 @@
 
         <!-- Section rangs et jeux -->
         <div class="ranks-games">
-            <h2> My Games</h2>
+            <h2>My Games</h2>
             <ul>
-                <li>Prefered Style : Survival, Fps, Hack n Slash</li>
-                <li>Best games : CS:GO, The Witcher 3, Path of Exile, The Forest, Subnautica</li>
+                <li>Prefered Style: Survival, Fps, Hack n Slash</li>
+                <li>Best games: CS:GO, The Witcher 3, Path of Exile, The Forest, Subnautica</li>
             </ul>
         </div>
 
@@ -200,9 +242,7 @@
         <div class="screenshots">
             <h2>Screenshot</h2>
             <div class="screenshot-grid">
-                <!-- Capture 2 réduite -->
                 <img class="capture-2" src="https://github.com/Lesourci/steam-profile-site/blob/main/images/Mageblood2.png?raw=true" alt="Capture 2">
-                <!-- Capture 3 agrandie -->
                 <img class="capture-3" src="https://github.com/Lesourci/steam-profile-site/blob/main/images/Pov2.png?raw=true" alt="Capture 3">
             </div>
         </div>
@@ -211,10 +251,9 @@
         <div class="useful-links">
             <h2>Useful Links</h2>
             <ul>
-                <li><a href="https://www.twitch.tv/lesourci" target="_blank">My Twitch Channel </a></li>
-                <li><a href="https://tracker.gg/valorant/profile/riot/Titouan%23BACK/overview" target="_blank">Valorant Stats </a></li>
-                <li><a href="https://www.op.gg/summoners/euw/Titouan-BACK" target="_blank">League Of Legend Stats </a></li>
-                <li><a href="https://csstats.gg/player/76561198157523528" target="_blank">Counter strike Global Offensive Stats  </a></li>
+                <li><a href="https://www.twitch.tv/lesourci" target="_blank">My Twitch Channel</a></li>
+                <li><a href="https://tracker.gg/valorant/profile/riot/Titouan%23BACK/overview" target="_blank">Valorant Stats</a></li>
+                <li><a href="https://www.op.gg/summoners/euw/Titouan-BACK" target="_blank">League of Legends Stats</a></li>
             </ul>
         </div>
     </div>
