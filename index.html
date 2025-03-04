@@ -126,12 +126,10 @@
             gap: 1rem;
         }
 
-        /* Image spécifique pour les captures d'écran */
-        .screenshot-grid img {
-            width: 100%;  /* Ajuste la largeur */
-            height: auto; /* Hauteur automatique pour garder le ratio */
-            max-height: 300px; /* Limite la hauteur à 300px */
-            object-fit: cover; /* Recadre l'image */
+        .screenshots img {
+            width: 100%;  /* Largeur automatique */
+            height: auto; /* Hauteur automatique */
+            object-fit: cover; /* Recadrage de l'image */
             border-radius: 10px;
             border: 2px solid #444;
         }
@@ -168,6 +166,11 @@
         .useful-links ul li a:hover {
             text-decoration: underline;
         }
+        
+        /* Agrandir la capture 3 */
+        .screenshot-grid .capture-3 {
+            max-height: 500px;  /* Agrandir Capture 3 */
+        }
     </style>
 </head>
 <body>
@@ -195,7 +198,7 @@
             <h2>Screenshot</h2>
             <div class="screenshot-grid">
                 <img src="https://github.com/Lesourci/steam-profile-site/blob/main/images/Mageblood.png?raw=true" alt="Capture 2">
-                <img src="https://github.com/Lesourci/steam-profile-site/blob/main/images/Pov.png?raw=true" alt="Capture 3">
+                <img class="capture-3" src="https://github.com/Lesourci/steam-profile-site/blob/main/images/Pov.png?raw=true" alt="Capture 3">
             </div>
         </div>
 
