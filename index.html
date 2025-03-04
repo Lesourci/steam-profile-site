@@ -142,13 +142,13 @@
 
         /* Capture 3 agrandie */
         .screenshots img.capture-3 {
-            width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 105%;  /* Augmenter la largeur de Capture 3 de 5% */
+            height: auto; /* Hauteur automatique pour garder les proportions */
+            max-height: 500px;  /* Limiter la hauteur si nécessaire */
+            object-fit: cover;  /* Recadrer l'image si nécessaire */
+            transform: translateX(-5%);  /* Centrer l'image à gauche */
         }
+
 
         /* Section Liens utiles */
         .useful-links {
